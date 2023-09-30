@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node index.js"
+    "dev": "npx playwright install chrome && node index.js"
   },
   "type": "module",
   "author": "",
