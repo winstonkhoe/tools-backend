@@ -1,9 +1,7 @@
 import playwright from 'playwright';
 
 const getBrowser = async () => {
-    const browser = await playwright.chromium.launch({
-        headless: false
-    });
+    const browser = await playwright.chromium.launch();
     return browser;
 }
 
