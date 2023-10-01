@@ -7,11 +7,12 @@ COPY utils/playwright.js /opt/pw/utils/playwright.js
 COPY utils/logging.js /opt/pw/utils/logging.js
 COPY utils/excel-reader.js /opt/pw/utils/excel-reader.js
 COPY utils/date-time.js /opt/pw/utils/date-time.js
-COPY utils/response.js /opt/pw/utils/response.js
+COPY utils/socket.js /opt/pw/utils/socket.js
+COPY utils/constants.js /opt/pw/utils/constants.js
 COPY utils/automations/logbook.js /opt/pw/utils/automations/logbook.js
 
 WORKDIR /opt/pw
-RUN npm install -D playwright@1.37.1 cors@2.8.5 express@4.18.2 dotenv@16.3.1 https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz multiparty@4.2.3
+RUN npm install -D playwright@1.37.1 cors@2.8.5 express@4.18.2 dotenv@16.3.1 https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz socket.io@4.7.2 utf-8-validate@5.0.10 bufferutil@4.0.7
 
 #ENV DEBUG=pw:api
 # Don't redownload browser image in future, because we already do it above

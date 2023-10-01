@@ -8,10 +8,10 @@ const initialize = () => {
   set_fs(fs)
 };
 
-const readExcelFromFile = (fileData) => {
+const readExcelFromFile = (fileBuffer) => {
   initialize();
   let data = [];
-  const file = readFile(fileData, {
+  const file = read(fileBuffer, {
     cellDates: true
   });
   const sheets = file.SheetNames;

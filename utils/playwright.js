@@ -1,7 +1,9 @@
 import playwright from 'playwright';
 
 const getBrowser = async () => {
-    const browser = await playwright.chromium.launch();
+    const browser = await playwright.chromium.launch({
+        headless: false
+    });
     return browser;
 }
 
@@ -22,6 +24,10 @@ const closePage = async (page) => {
 const closeAll = async (browser, page) => {
     await closePage(page);
     await closeBrowser(browser);
+}
+
+const isElementExists = async (page, selector) => {
+    return await page.locator(selector).count() > 0;
 }
 
 export { 
