@@ -7,6 +7,7 @@ COPY utils/playwright.js /opt/pw/utils/playwright.js
 COPY utils/logging.js /opt/pw/utils/logging.js
 COPY utils/excel-reader.js /opt/pw/utils/excel-reader.js
 COPY utils/date-time.js /opt/pw/utils/date-time.js
+COPY utils/response.js /opt/pw/utils/response.js
 COPY utils/automations/logbook.js /opt/pw/utils/automations/logbook.js
 
 WORKDIR /opt/pw
@@ -16,6 +17,7 @@ RUN npm install -D playwright@1.37.1 cors@2.8.5 express@4.18.2 dotenv@16.3.1 htt
 # Don't redownload browser image in future, because we already do it above
 ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 ENV PLAYWRIGHT_TIMEOUT=60000
+ENV CORS_ORIGIN=*
 
 EXPOSE 8000
 
