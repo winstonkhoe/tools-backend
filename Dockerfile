@@ -12,9 +12,10 @@ COPY utils/automations/logbook.js /opt/pw/utils/automations/logbook.js
 WORKDIR /opt/pw
 RUN npm install -D playwright@1.37.1 cors@2.8.5 express@4.18.2 dotenv@16.3.1 https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz multiparty@4.2.3
 
-ENV DEBUG=pw:api
+#ENV DEBUG=pw:api
 # Don't redownload browser image in future, because we already do it above
 ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+ENV PLAYWRIGHT_TIMEOUT=60000
 
 EXPOSE 8000
 

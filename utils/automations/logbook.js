@@ -5,7 +5,6 @@ const fillLogBook = async (filePath, email, password) => {
   const { data, header } = readExcelFromFile(filePath);
   const browser = await getBrowser();
   const page = await getBrowserPage(browser);
-  page.setDefaultTimeout(600000);
 
   const enrichment_web =
     'https://enrichment.apps.binus.ac.id/Login/Student/Login';

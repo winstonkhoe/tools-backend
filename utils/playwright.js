@@ -7,6 +7,7 @@ const getBrowser = async () => {
 
 const getBrowserPage = async (browser) => {
     const page = await browser.newPage();
+    page.setDefaultTimeout(process.env.PLAYWRIGHT_TIMEOUT || 60000);
     return page;
 };
 
