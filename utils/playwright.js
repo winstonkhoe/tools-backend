@@ -1,7 +1,7 @@
-import { chromium } from 'playwright';
+import playwright from 'playwright';
 
 const getBrowser = async () => {
-    const browser = await chromium.launch();
+    const browser = await playwright.chromium.launch();
     return browser;
 }
 

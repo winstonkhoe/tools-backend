@@ -4,18 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx playwright install chrome && node index.js"
+    "dev": "node index.js"
   },
   "type": "module",
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@playwright/browser-chromium": "^1.38.1",
+  "devDependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "multiparty": "^4.2.3",
-    "playwright": "^1.38.1",
+    "playwright": "^1.37.1",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz"
   }
 }
