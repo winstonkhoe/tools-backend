@@ -42,15 +42,21 @@ const processQueue = async () => {
           const password = passwordRaw?.[0];
           const file = fileRaw[0];
 
-          log('start fill logbook');
-          await fillLogBook(file?.path, email, password);
-          log('done fill logbook');
-          res.send('Logbook filled');
+          try {
+            log('start fill logbook');
+            await fillLogBook(file?.path, email, password);
+            log('done fill logbook');
+            res.status(200).send('Logbook filled');
+          } catch (error) {
+            log(`error fill logbook: ${error}`);
+            res.status(500).send('Binus Enrichment Web is having trouble');
+          } finally {
+          }
         }
         processQueue();
       });
     } catch (error) {
-      res.status(500).send('Error');
+      res.status(400).send('Bad Request');
       processQueue();
     }
   }
