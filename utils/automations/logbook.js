@@ -1,3 +1,4 @@
+import { normalizeDate } from '../date-time.js';
 import { readExcelFromFile } from '../excel-reader.js';
 import { closeAll, getBrowser, getBrowserPage } from '../playwright.js';
 import { emitEnrichmentAutomationFillLogBookError, emitEnrichmentAutomationFillLogBookStatus, emitEnrichmentAutomationFillLogBookSuccess } from '../socket.js';
@@ -97,7 +98,7 @@ const fillSingleEntry = async ({ socket = undefined, page, dataEntries, dataEntr
         return '';
       };
       const description =
-        matchData[header[5]] ?? '' + getNote(matchData[header[6]]);
+        (matchData[header[5]] || '') + getNote(matchData[header[6]]);
       await page.fill('#editDescription', description);
       await page.locator('#logBookEditPopup').getByText('Submit').click();
     } else {
@@ -178,6 +179,7 @@ const fillLogBook = async ({ socket = undefined, fileBuffer, email, password, mo
     emitEnrichmentAutomationFillLogBookStatus(socket, 'Task done.');
     emitEnrichmentAutomationFillLogBookSuccess(socket)
   } catch (error) {
+    console.log(error)
     emitEnrichmentAutomationFillLogBookError(socket)
   } finally {
     await closeAll(browser, page);
