@@ -89,7 +89,8 @@ const fillSingleEntry = async ({ socket = undefined, page, dataEntries, dataEntr
         .getByRole('button', { name: 'Done' })
         .click();
 
-      await page.fill('#editActivity', matchData[header[4]]);
+      const activity = matchData[header[4]]
+      await page.fill('#editActivity', activity);
 
       const getNote = (note) => {
         if (note) {
@@ -99,7 +100,7 @@ const fillSingleEntry = async ({ socket = undefined, page, dataEntries, dataEntr
       };
       const description =
         (matchData[header[5]] || '') + getNote(matchData[header[6]]);
-      await page.fill('#editDescription', description);
+      await page.fill('#editDescription', description.length > 0 ? description : activity);
       await page.locator('#logBookEditPopup').getByText('Submit').click();
     } else {
       await page.locator('#logBookEditPopup').getByText('Off').click();
