@@ -31,7 +31,7 @@ const changeEnrichmentTerm = async (page, periodSemester) => {
   //   index: selectTermsOptionsCount - 1 //select latest term
   // });
   await selectTerms.selectOption({
-    value: periodSemester //select to selected term
+    value: `${periodSemester}` //select to selected term
   });
 };
 
@@ -164,7 +164,7 @@ const fillLogBook = async ({ socket = undefined, fileBuffer, email, password, mo
     emitEnrichmentAutomationFillLogBookStatus(socket, 'Navigating to enrichment landing page');
     await navigateToEnrichmentLandingPage(page);
     emitEnrichmentAutomationFillLogBookStatus(socket, 'Landed to enrichment landing page');
-    emitEnrichmentAutomationFillLogBookStatus(socket, 'Updating enrichment term to latest');
+    emitEnrichmentAutomationFillLogBookStatus(socket, 'Updating enrichment term');
     await changeEnrichmentTerm(page, periodSemester);
     emitEnrichmentAutomationFillLogBookStatus(socket, 'Enrichment term updated');
     emitEnrichmentAutomationFillLogBookStatus(socket, 'Navigating to logbook page');
