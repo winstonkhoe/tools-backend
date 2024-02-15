@@ -34,13 +34,14 @@ io.on('connection', (socket) => {
 
   socket.on(
     SOCKET_EVENT.enrichmentAutomation.fillLogBook.trigger,
-    async (email, password, file, months) => {
+    async (email, password, file, months, periodSemester) => {
       fillLogBook({
         socket: socket,
         email: email,
         password: password,
         fileBuffer: file,
-        months: months
+        months: months,
+        periodSemester: periodSemester
       });
     }
   );

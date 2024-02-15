@@ -23,12 +23,15 @@ const navigateToEnrichmentLandingPage = async (page) => {
   await page.waitForLoadState('networkidle');
 };
 
-const changeEnrichmentTermToLatest = async (page) => {
+const changeEnrichmentTerm = async (page, periodSemester) => {
   const selectTerms = page.locator('select');
   const selectTermsOptions = selectTerms.locator('option');
   const selectTermsOptionsCount = await selectTermsOptions.count();
+  // await selectTerms.selectOption({
+  //   index: selectTermsOptionsCount - 1 //select latest term
+  // });
   await selectTerms.selectOption({
-    index: selectTermsOptionsCount - 1 //select latest term
+    value: periodSemester //select to selected term
   });
 };
 
@@ -147,7 +150,7 @@ const fillLogBookByMonth = async ({ socket = undefined, page, month, data, heade
   }
 };
 
-const fillLogBook = async ({ socket = undefined, fileBuffer, email, password, months }) => {
+const fillLogBook = async ({ socket = undefined, fileBuffer, email, password, months, periodSemester }) => {
   const browser = await getBrowser();
   const page = await getBrowserPage(browser);
 
@@ -162,7 +165,7 @@ const fillLogBook = async ({ socket = undefined, fileBuffer, email, password, mo
     await navigateToEnrichmentLandingPage(page);
     emitEnrichmentAutomationFillLogBookStatus(socket, 'Landed to enrichment landing page');
     emitEnrichmentAutomationFillLogBookStatus(socket, 'Updating enrichment term to latest');
-    await changeEnrichmentTermToLatest(page);
+    await changeEnrichmentTerm(page, periodSemester);
     emitEnrichmentAutomationFillLogBookStatus(socket, 'Enrichment term updated');
     emitEnrichmentAutomationFillLogBookStatus(socket, 'Navigating to logbook page');
     await navigateToLogBookPage(page);
